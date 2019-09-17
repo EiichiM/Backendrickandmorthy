@@ -38,8 +38,9 @@ const getChapter = () => {
         }
     })
 }
-
-getChapter()
+app.get("/all/products", (req, res) => {
+    getChapter().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
 const getStatus = () => {
 
@@ -64,7 +65,9 @@ const getStatus = () => {
     })
 }
 
-getStatus()
+app.get("/status", (req, res) => {
+    getStatus().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
 const getSpicie = () => {
 
@@ -86,8 +89,9 @@ const getSpicie = () => {
         }
     })
 }
-
-getSpicie()
+app.get("/Spicie", (req, res) => {
+    getSpicie().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
 const getURLE = () => {
 
@@ -110,9 +114,9 @@ const getURLE = () => {
         }
     })
 }
-
-getURLE()
-
+app.get("/url", (req, res) => {
+    getURLE().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
 const getID = () => {
 
@@ -134,8 +138,9 @@ const getID = () => {
         }
     })
 }
-
-getID()
+app.get("/id", (req, res) => {
+    getID().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
 const getName = () => {
 
@@ -157,8 +162,9 @@ const getName = () => {
         }
     })
 }
-
-getName()
+app.get("/name", (req, res) => {
+    getName().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
 const getDate = () => {
 
@@ -180,8 +186,10 @@ const getDate = () => {
         }
     })
 }
+app.get("/Date", (req, res) => {
+    getDate().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 
-getDate()
 
 app.listen(PORT, () => {
     console.log( `Servidor corriendo en ${ PORT }`)
