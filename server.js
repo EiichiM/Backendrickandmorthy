@@ -16,13 +16,13 @@ app.use(bodyparser.json());
 app.use(cors());
 
 const request = require('request')
-const URL = 'https://rickandmortyapi.com/api/episode'
+// const URLRM = 'https://rickandmortyapi.com/api/'
 
 const getChapter = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/episode/'
+    const URLE = 'https://rickandmortyapi.com/api/episode/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
@@ -43,9 +43,9 @@ getChapter()
 
 const getStatus = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/character/'
+    const URLE = 'https://rickandmortyapi.com/api/character/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
@@ -68,9 +68,9 @@ getStatus()
 
 const getSpicie = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/character/'
+    const URLE = 'https://rickandmortyapi.com/api/character/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
@@ -89,36 +89,36 @@ const getSpicie = () => {
 
 getSpicie()
 
-const getURL = () => {
+const getURLE = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/character/'
+    const URLE = 'https://rickandmortyapi.com/api/character/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
-        const CharURL = []
+        const CharURLE = []
 
         if (response.statusCode === 200) {
             for (let i = 0; i < json.results.length; i++) {
-                CharURL.push(json.results[i].url)
+                CharURLE.push(json.results[i].url)
             }
 
-            console.log('Eston son las url: ' + CharURL)
+            console.log('Eston son las url: ' + CharURLE)
         } else {
             console.log('Error')
         }
     })
 }
 
-getURL()
+getURLE()
 
 
 const getID = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/episode/'
+    const URLE = 'https://rickandmortyapi.com/api/episode/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
@@ -139,9 +139,9 @@ getID()
 
 const getName = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/episode/'
+    const URLE = 'https://rickandmortyapi.com/api/episode/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
@@ -162,9 +162,9 @@ getName()
 
 const getDate = () => {
 
-    const URL = 'https://rickandmortyapi.com/api/episode/'
+    const URLE = 'https://rickandmortyapi.com/api/episode/'
 
-    request.get(URL, (error, response, body) => {
+    request.get(URLE, (error, response, body) => {
 
         response.statusCode === 200
         const json = JSON.parse(body)
