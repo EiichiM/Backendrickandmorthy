@@ -1,0 +1,28 @@
+{
+  "name": "pruebaback",
+  "version": "1.0.0",
+  "description": "prueba ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "exprees",
+    "mongoose",
+    "dotenv"
+  ],
+  "author": "Eiichi Matsuo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.1",
+    "nodemon": "^1.19.2",
+    "request": "^2.88.0"
+  }
+}
