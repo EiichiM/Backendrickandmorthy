@@ -41,7 +41,7 @@ const getChapter = () => {
 app.get("/all/products", (req, res) => {
     getChapter().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getChapter()
 const getStatus = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/character/'
@@ -68,7 +68,7 @@ const getStatus = () => {
 app.get("/status", (req, res) => {
     getStatus().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getStatus()
 const getSpicie = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/character/'
@@ -92,7 +92,7 @@ const getSpicie = () => {
 app.get("/Spicie", (req, res) => {
     getSpicie().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getSpicie()
 const getURLE = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/character/'
@@ -117,7 +117,7 @@ const getURLE = () => {
 app.get("/url", (req, res) => {
     getURLE().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getURLE()
 const getID = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/episode/'
@@ -141,7 +141,7 @@ const getID = () => {
 app.get("/id", (req, res) => {
     getID().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getID()
 const getName = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/episode/'
@@ -165,7 +165,7 @@ const getName = () => {
 app.get("/name", (req, res) => {
     getName().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getName()
 const getDate = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/episode/'
@@ -186,10 +186,11 @@ const getDate = () => {
         }
     })
 }
+
 app.get("/Date", (req, res) => {
     getDate().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
-
+getDate()
 
 app.listen(PORT, () => {
     console.log( `Servidor corriendo en ${ PORT }`)
