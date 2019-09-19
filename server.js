@@ -5,7 +5,7 @@ const URL = process.env.URL;
 mongoose.connect(URL, { useNewUrlPrser: true }, (err) => {
     if (!err) { console.log("Conectado a Mongo") }
 });
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
@@ -38,10 +38,10 @@ const getChapter = () => {
         }
     })
 }
-app.get("/all/products", (req, res) => {
-    getChapter().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getChapter()
+app.get("/all/products", (req, res) => {
+    getChapter.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 const getStatus = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/character/'
@@ -65,10 +65,10 @@ const getStatus = () => {
     })
 }
 
-app.get("/status", (req, res) => {
-    getStatus().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getStatus()
+app.get("/status", (req, res) => {
+    getStatus.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 const getSpicie = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/character/'
@@ -89,10 +89,10 @@ const getSpicie = () => {
         }
     })
 }
-app.get("/Spicie", (req, res) => {
-    getSpicie().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getSpicie()
+app.get("/Spicie", (req, res) => {
+    getSpicie.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 const getURLE = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/character/'
@@ -114,10 +114,10 @@ const getURLE = () => {
         }
     })
 }
-app.get("/url", (req, res) => {
-    getURLE().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getURLE()
+app.get("/url", (req, res) => {
+    getURLE.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
 const getID = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/episode/'
@@ -138,10 +138,11 @@ const getID = () => {
         }
     })
 }
-app.get("/id", (req, res) => {
-    getID().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getID()
+app.get("/id", (req, res) => {
+    getID.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
+
 const getName = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/episode/'
@@ -162,10 +163,11 @@ const getName = () => {
         }
     })
 }
-app.get("/name", (req, res) => {
-    getName().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getName()
+app.get("/name", (req, res) => {
+    getName.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
+
 const getDate = () => {
 
     const URLE = 'https://rickandmortyapi.com/api/episode/'
@@ -186,12 +188,12 @@ const getDate = () => {
         }
     })
 }
-
-app.get("/Date", (req, res) => {
-    getDate().find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
-});
 getDate()
 
+app.get("/date", (req, res) => {
+    getDate.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
+});
+
 app.listen(PORT, () => {
-    console.log( `Servidor corriendo en ${ PORT }`)
+    console.log(`Servidor corriendo en ${PORT}`)
 });
