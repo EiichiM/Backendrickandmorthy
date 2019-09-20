@@ -15,6 +15,10 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'sport_app', 'build', 'index.html'));
+  });
+
 const request = require('request')
 // const URLRM = 'https://rickandmortyapi.com/api/'
 
