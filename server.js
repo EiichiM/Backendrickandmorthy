@@ -83,10 +83,10 @@ app.get("/status", (req, res) => {
             } else {
                 reject('Error')
             }
+            getStatus
+            .then(respuesta => res.status(200).send(respuesta))
+            .catch(err => res.status(409).send(err))
         })
-        getStatus
-        .then(respuesta => res.status(200).send(respuesta))
-        .catch(err => res.status(409).send(err))
 
     })
 
