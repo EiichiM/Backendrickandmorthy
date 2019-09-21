@@ -28,14 +28,15 @@ app.get('/', (req, res) => {
         })
 
     })
-    rmpromise.then(respuesta=> res.send(respuesta.character))
+    rmpromise
+        .then(respuesta=> res.status(200).send(respuesta))
+        .catch(error => res.status(404).send(error))
 });
 
 app.get("/all/products", (req, res) => {
     
-    const getChapter = () => {
-    
-        const URLE = 'https://rickandmortyapi.com/api/episode/'
+    const URLE = 'https://rickandmortyapi.com/api/episode/'
+    const getChapter = new Promise ((resolve, reject) => {
     
         request.get(URLE, (error, response, body) => {
     
@@ -47,21 +48,22 @@ app.get("/all/products", (req, res) => {
                 for (let i = 0; i < json.results.length; i++) {
                     episode.push(json.results[i])
                 }
-                console.log(episode)
+                resolve(episode)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
-    }
-    
+    })
 
+    getChapter
+        .then(data => res.status(200).send(data))
+        .catch(error => res.status(404).send(error))
 
-    getChapter.find().exec().then(respuesta => res.send(respuesta)).catch(err => res.status(409).send(err))
 });
 
 app.get("/status", (req, res) => {
     
-    const getStatus = () => {
+    const getStatus = new Promise ((resolve, reject) => {
     
         const URLE = 'https://rickandmortyapi.com/api/character/'
     
@@ -77,20 +79,23 @@ app.get("/status", (req, res) => {
                     Results.push(json.results[i].status)
                 }
     
-                console.log('Eston son los status: ' + Results)
+                resolve('Eston son los status: ' + Results)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
-    }
+        getStatus
+        .then(respuesta => res.status(200).send(respuesta))
+        .catch(err => res.status(409).send(err))
+
+    })
 
 
-    getStatus.find().exec().then(respuesta => res.send(respuesta)).catch(err => res.status(409).send(err))
 });
 app.get("/Spicie", (req, res) => {
     
     
-    const getSpicie = () => {
+    const getSpicie =new Promise ((resolve, reject) => {
     
         const URLE = 'https://rickandmortyapi.com/api/character/'
     
@@ -104,18 +109,20 @@ app.get("/Spicie", (req, res) => {
                 for (let i = 0; i < json.results.length; i++) {
                     Specie.push(json.results[i].species)
                 }
-                console.log('Eston son los especies: ' + Specie)
+                resolve('Eston son los especies: ' + Specie)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
-    }
+        getSpicie
+        .then(products => res.status(200).send(products))
+        .catch(err => res.status(409).send(err))
+    })
 
-    getSpicie.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
 app.get("/url", (req, res) => {
     
-    const getURLE = () => {
+    const getURLE = new Promise ((resolve, reject) => {
     
         const URLE = 'https://rickandmortyapi.com/api/character/'
     
@@ -130,18 +137,20 @@ app.get("/url", (req, res) => {
                     CharURLE.push(json.results[i].url)
                 }
     
-                console.log('Eston son las url: ' + CharURLE)
+                resolve('Eston son las url: ' + CharURLE)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
-    }
+        getURLE
+        .then(products => res.status(200).send(products))
+        .catch(err => res.status(409).send(err))
+    })
 
-    getURLE.find().exec().then(products => res.send(products)).catch(err => res.status(409).send(err))
 });
 app.get("/id", (req, res) => {
     
-    const getID = () => {
+    const getID =new Promise ((resolve, reject) => {
     
         const URLE = 'https://rickandmortyapi.com/api/episode/'
     
@@ -155,21 +164,23 @@ app.get("/id", (req, res) => {
                 for (let i = 0; i < json.results.length; i++) {
                     IDs.push(json.results[i].id)
                 }
-                console.log('Eston son los IDS: ' + IDs)
+                resolve('Eston son los IDS: ' + IDs)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
-    }
-    getID()
+        getID
+        .then(respuesta => res.send(respuesta))
+        .catch(err => res.status(409).send(err))
+    })
     
-    getID.find().exec().then(respuesta => res.send(respuesta)).catch(err => res.status(409).send(err))
+    
 });
 
 
 app.get("/name", (req, res) => {
     
-    const getName = () => {
+    const getName = new Promise ((resolve, reject) => {
     
         const URLE = 'https://rickandmortyapi.com/api/episode/'
     
@@ -183,21 +194,23 @@ app.get("/name", (req, res) => {
                 for (let i = 0; i < json.results.length; i++) {
                     names.push(json.results[i].name)
                 }
-                console.log('Eston son los episodios: ' + names)
+                resolve('Eston son los episodios: ' + names)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
-    }
+        getName
+        .then(respuesta => res.send(respuesta))
+        .catch(err => res.status(409).send(err))
+    })
 
 
-    getName.find().exec().then(respuesta => res.send(respuesta)).catch(err => res.status(409).send(err))
 });
 
 
 app.get("/date", (req, res) => {
     
-    const getDate = () => {
+    const getDate = new Promise ((resolve, reject) => {
     
         const URLE = 'https://rickandmortyapi.com/api/episode/'
     
@@ -216,9 +229,11 @@ app.get("/date", (req, res) => {
                 console.log('Error')
             }
         })
-    }
+        getDate
+        .then(respuesta => res.status(200).send(respuesta))
+        .catch(err => res.status(409).send(err))
+    })
 
-    getDate.find().exec().then(respuesta => res.send(respuesta)).catch(err => res.status(409).send(err))
 });
 
 app.listen(PORT, () => {
