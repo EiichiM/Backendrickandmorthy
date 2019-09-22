@@ -5,11 +5,12 @@ const URL = process.env.URL;
 mongoose.connect(URL, { useNewUrlPrser: true }, (err) => {
     if (!err) { console.log("Conectado a Mongo") }
 });
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5009;
 const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const axios = require("axios")
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
@@ -29,21 +30,21 @@ app.get('/', (req, res) => {
 
     })
     rmpromise
-        .then(respuesta=> res.status(200).send(respuesta))
+        .then(respuesta => res.status(200).send(respuesta))
         .catch(error => res.status(404).send(error))
 });
 
 app.get("/all/products", (req, res) => {
-    
+
     const URLE = 'https://rickandmortyapi.com/api/episode/'
-    const getChapter = new Promise ((resolve, reject) => {
-    
+    const getChapter = new Promise((resolve, reject) => {
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const episode = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
                     episode.push(json.results[i])
@@ -62,30 +63,30 @@ app.get("/all/products", (req, res) => {
 });
 
 app.get("/status", (req, res) => {
-    
-    const getStatus = new Promise ((resolve, reject) => {
-    
+
+    const getStatus = new Promise((resolve, reject) => {
+
         const URLE = 'https://rickandmortyapi.com/api/character/'
-    
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const Results = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
-    
+
                     Results.push(json.results[i].status)
                 }
-    
+
                 resolve('Eston son los status: ' + Results)
             } else {
                 reject('Error')
             }
             getStatus
-            .then(respuesta => res.status(200).send(respuesta))
-            .catch(err => res.status(409).send(err))
+                .then(respuesta => res.status(200).send(respuesta))
+                .catch(err => res.status(409).send(err))
         })
 
     })
@@ -93,18 +94,18 @@ app.get("/status", (req, res) => {
 
 });
 app.get("/Spicie", (req, res) => {
-    
-    
-    const getSpicie =new Promise ((resolve, reject) => {
-    
+
+
+    const getSpicie = new Promise((resolve, reject) => {
+
         const URLE = 'https://rickandmortyapi.com/api/character/'
-    
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const Specie = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
                     Specie.push(json.results[i].species)
@@ -115,51 +116,51 @@ app.get("/Spicie", (req, res) => {
             }
         })
         getSpicie
-        .then(products => res.status(200).send(products))
-        .catch(err => res.status(409).send(err))
+            .then(products => res.status(200).send(products))
+            .catch(err => res.status(409).send(err))
     })
 
 });
 app.get("/url", (req, res) => {
-    
-    const getURLE = new Promise ((resolve, reject) => {
-    
+
+    const getURLE = new Promise((resolve, reject) => {
+
         const URLE = 'https://rickandmortyapi.com/api/character/'
-    
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const CharURLE = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
                     CharURLE.push(json.results[i].url)
                 }
-    
+
                 resolve('Eston son las url: ' + CharURLE)
             } else {
                 reject('Error')
             }
         })
         getURLE
-        .then(products => res.status(200).send(products))
-        .catch(err => res.status(409).send(err))
+            .then(products => res.status(200).send(products))
+            .catch(err => res.status(409).send(err))
     })
 
 });
 app.get("/id", (req, res) => {
-    
-    const getID =new Promise ((resolve, reject) => {
-    
+
+    const getID = new Promise((resolve, reject) => {
+
         const URLE = 'https://rickandmortyapi.com/api/episode/'
-    
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const IDs = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
                     IDs.push(json.results[i].id)
@@ -170,26 +171,26 @@ app.get("/id", (req, res) => {
             }
         })
         getID
-        .then(respuesta => res.send(respuesta))
-        .catch(err => res.status(409).send(err))
+            .then(respuesta => res.send(respuesta))
+            .catch(err => res.status(409).send(err))
     })
-    
-    
+
+
 });
 
 
 app.get("/name", (req, res) => {
-    
-    const getName = new Promise ((resolve, reject) => {
-    
+
+    const getName = new Promise((resolve, reject) => {
+
         const URLE = 'https://rickandmortyapi.com/api/episode/'
-    
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const names = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
                     names.push(json.results[i].name)
@@ -200,8 +201,8 @@ app.get("/name", (req, res) => {
             }
         })
         getName
-        .then(respuesta => res.send(respuesta))
-        .catch(err => res.status(409).send(err))
+            .then(respuesta => res.send(respuesta))
+            .catch(err => res.status(409).send(err))
     })
 
 
@@ -209,32 +210,42 @@ app.get("/name", (req, res) => {
 
 
 app.get("/date", (req, res) => {
-    
-    const getDate = new Promise ((resolve, reject) => {
-    
+
+    const getDate = new Promise((resolve, reject) => {
+
         const URLE = 'https://rickandmortyapi.com/api/episode/'
-    
+
         request.get(URLE, (error, response, body) => {
-    
+
             response.statusCode === 200
             const json = JSON.parse(body)
             const date = []
-    
+
             if (response.statusCode === 200) {
                 for (let i = 0; i < json.results.length; i++) {
                     date.push(json.results[i].air_date)
                 }
-                console.log('Eston son las fechas de publicación: ' + date)
+                resolve('Eston son las fechas de publicación: ' + date)
             } else {
-                console.log('Error')
+                reject('Error')
             }
         })
         getDate
-        .then(respuesta => res.status(200).send(respuesta))
-        .catch(err => res.status(409).send(err))
+            .then(respuesta => res.status(200).send(respuesta))
+            .catch(err => res.status(409).send(err))
     })
 
 });
+app.get("/all", (req, res)=>{
+
+    Promise.all([
+        axios.get("https://rickandmortyapi.com/api/episode/").then(res => { return res.data.results }),
+        axios.get("https://rickandmortyapi.com/api/character/").then(res => { return res.data.results })
+    ])
+        .then(values => { return res.status(200).send(values) })
+        .catch(reason => { return res.status(404).send(reason) });
+})
+
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en ${PORT}`)
